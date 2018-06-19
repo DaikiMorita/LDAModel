@@ -1,0 +1,54 @@
+ans_list = []
+for topics_per_document in tqdm.tqdm(lda[test_corpus]):
+
+	max_pro = 0
+	max_index = 0
+	for index, topic_tuple in enumerate(topics_per_document):
+
+		if max_pro < int(topic_tuple[1]):
+			max_pro = int(topic_tuple[1])
+			max_index = index
+
+	ans_list.append(index)
+
+print(len(ans_list))
+print(len(test_reviews))
+print (sum(ans_list) / sum(test_reviews))
+
+
+########
+# Test #
+########
+
+# [1] Reading of Data
+test_doc = ex_file_manager.read_txt_file(path_to_test_data)
+
+# [2] Cleaning of Data
+test_doc = split_each_review(test_doc)
+test_doc,test_reviews = clean_doc(test_doc)
+test_doc = remove_stop_word(test_doc)
+
+test_corpus = [dictionary.doc2bow(text) for text in test_doc]
+
+# [3] Generation of Topic
+
+test_corpus = " I hate this movie. I never want to watch it."
+#print (lda[test_corpus][0] + lda[test_corpus][1])
+test_corpus = " I love this movie. I want to wactch it again!"
+#print (lda[test_corpus][0] + lda[test_corpus][1])
+
+1
+2
+3
+4
+5
+6
+7
+8 0
+9 0
+10
+11 0
+12
+13 0
+14 0
+15 0
